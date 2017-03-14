@@ -6,3 +6,4 @@ Debug
 *.user
 obj
 bin
+!TodoistTemplateGenerator/packages/**/*
