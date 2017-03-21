@@ -3,8 +3,11 @@
 open System
 open System.IO
 
+type TemplateFilePath = Path
+type TemplateStartDate = DateTime
+
 type Arg = {
-    templateFile: Path;
-    startDate: DateTime;
+    templateFile: TemplateFilePath;
+    startDate: TemplateStartDate;
 }
 
