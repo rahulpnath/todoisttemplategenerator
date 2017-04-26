@@ -1,7 +1,15 @@
-﻿module ArgParser
+﻿module TodoistTemplateGenerator.ArgParser
 
-let rec parseArguments args optionsSoFar = 
-    match args with
-    |[] -> optionsSoFar
-    |_ -> optionsSoFar
+    let parse args =
+        let defaultOptions = { 
+            templateFile = None;
+            startDate = None
+            }
+
+        let rec parseArguments args optionsSoFar = 
+            match args with
+            |[] -> optionsSoFar
+            |_ -> optionsSoFar
+
+        parseArguments args defaultOptions
 

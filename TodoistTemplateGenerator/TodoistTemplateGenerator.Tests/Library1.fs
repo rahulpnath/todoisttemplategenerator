@@ -2,8 +2,11 @@
 
 open FsCheck
 open Xunit
+open TodoistTemplateGenerator
+open System
 
 [<Fact>]
-let ``Reverse of reverse of a list is the original list``() =
-  let revRevIsOrig (xs:list<int>) = List.rev(List.rev xs) = xs
-  Check.QuickThrowOnFailure revRevIsOrig
+let ``Parse with Empty Arguments returs default options`` =
+    let expected = { templateFile = None; startDate = None}
+    let actual = ArgParser.parse []
+    Assert.Equal(expected, actual)

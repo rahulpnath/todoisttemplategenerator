@@ -3,10 +3,10 @@
 open System
 open System.IO
 
-type TemplateFilePath = Path
-type TemplateStartDate = DateTime
+type TemplateFilePath = option<Path>
+type TemplateStartDate = option<DateTime>
 
-type Arg = {
+type CommandLineOptions = {
     templateFile: TemplateFilePath;
     startDate: TemplateStartDate;
 }
