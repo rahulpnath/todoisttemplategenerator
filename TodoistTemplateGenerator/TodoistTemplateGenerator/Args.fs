@@ -3,7 +3,7 @@
 open System
 open System.IO
 
-type TemplateFilePath = option<Path>
+type TemplateFilePath = option<string>
 type TemplateStartDate = option<DateTime>
 
 type CommandLineOptions = {
