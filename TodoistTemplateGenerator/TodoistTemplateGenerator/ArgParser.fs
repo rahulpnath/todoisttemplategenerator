@@ -3,6 +3,7 @@
     open Microsoft.FSharp.Core
     open System
 
+
     let parse args =
         let defaultOptions = { 
             templateFile = None;
@@ -11,21 +12,23 @@
 
         let rec parseArguments args optionsSoFar = 
             match args with
-            | [] -> optionsSoFar
+            | [] -> Success optionsSoFar
             | "-templateFile"::xs -> 
                 match xs with
                 | file:string :: xss -> 
                     let newOptionsSoFar = {optionsSoFar with templateFile=Some(file)}
                     parseArguments xss newOptionsSoFar
-                | _ -> failwith "File name is required"
+                | _ -> Result.Failure(MissingArgument("File name is required"))
             | "-startDate"::xs ->
                 match xs with
                 | dateString:string::xss ->
-                    let date = DateTime.Parse(dateString)
-                    let newOptionsSoFar = {optionsSoFar with startDate=Some(date)}
-                    parseArguments xss newOptionsSoFar
-                | _ -> failwith "Date is required"
-            | _ -> optionsSoFar
+                    match DateTime.TryParse dateString with
+                    | true, date -> 
+                        let newOptionsSoFar = {optionsSoFar with startDate=Some(date)}
+                        parseArguments xss newOptionsSoFar
+                    | _ -> Result.Failure(InvalidFormat("Invalid Date"))
+                | _ -> Result.Failure(MissingArgument("Date is required"))
+            | _ -> Success optionsSoFar
 
         parseArguments args defaultOptions
 

@@ -54,7 +54,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Library1.fs" />
+    <Compile Include="ArgParserTests.fs" />
     <Content Include="packages.config" />
     <None Include="any\netstandard1.6\FSharp.Core.sigdata" />
     <None Include="any\netstandard1.6\FSharp.Core.optdata" />
