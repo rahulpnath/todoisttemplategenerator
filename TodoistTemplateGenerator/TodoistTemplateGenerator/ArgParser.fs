@@ -2,7 +2,7 @@
 
     open Microsoft.FSharp.Core
     open System
-
+    open System.IO
 
     let parse args =
         let defaultOptions = { 
@@ -18,8 +18,11 @@
             | "-templateFile"::xs -> 
                 match xs with
                 | file:string :: xss when not (isCommandLineSwitch file) -> 
-                    let newOptionsSoFar = {optionsSoFar with templateFile=Some(file)}
-                    parseArguments xss newOptionsSoFar
+                    match File.Exists file with
+                    | true -> 
+                        let newOptionsSoFar = {optionsSoFar with templateFile=Some(file)}
+                        parseArguments xss newOptionsSoFar
+                    | false -> Result.Failure(InvalidFormat("File does not exists"))
                 | _ -> Result.Failure(MissingArgument("File name is required"))
             | "-startDate"::xs ->
                 match xs with

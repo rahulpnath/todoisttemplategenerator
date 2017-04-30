@@ -36,6 +36,7 @@ open Swensen.Unquote
 
     [<Theory>]
     [<InlineData("-startDate invalidDate -templateFile TestFile.csv", "Invalid Date")>]
+    [<InlineData("-startDate 10-Apr-2016 -templateFile NotExistingTestFile.csv", "File does not exists")>]
     let ``Parse with invalid argument format returns expected``(
       argString: string,
       errorString: string) =
