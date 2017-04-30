@@ -23,3 +23,23 @@ open Swensen.Unquote
         let actual = ArgParser.parse args
         test <@ expected = actual @>
     
+    [<Theory>]
+    [<InlineData("-templateFile -startDate 10-Apr-2015", "File name is required")>]
+    [<InlineData("-startDate -templateFile TestFile.csv", "Date is required")>]
+    let ``Parse with missing arguments returns expected``(
+      argString: string,
+      errorString: string) =
+        let args = argString.Split() |> Array.toList
+        let expected : Result<CommandLineOptions, Error> = Failure(MissingArgument(errorString))
+        let actual = ArgParser.parse args
+        test <@ expected = actual @>
+
+    [<Theory>]
+    [<InlineData("-startDate invalidDate -templateFile TestFile.csv", "Invalid Date")>]
+    let ``Parse with invalid argument format returns expected``(
+      argString: string,
+      errorString: string) =
+        let args = argString.Split() |> Array.toList
+        let expected : Result<CommandLineOptions, Error> = Failure(InvalidFormat(errorString))
+        let actual = ArgParser.parse args
+        test <@ expected = actual @>
