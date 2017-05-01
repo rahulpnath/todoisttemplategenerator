@@ -62,6 +62,7 @@
     <Content Include="TestFile.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Compile Include="ProgramTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsCheck">
