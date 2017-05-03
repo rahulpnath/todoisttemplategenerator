@@ -18,3 +18,7 @@ type CommandLineOptions = {
     templateFile: TemplateFilePath;
     startDate: TemplateStartDate;
 }
+
+type DaysFromNow = int
+
+

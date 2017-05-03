@@ -3,6 +3,27 @@
     open Microsoft.FSharp.Core
     open System
     open System.IO
+    open System.Text.RegularExpressions
+
+    let (|Int|_|) str =
+        match System.Int32.TryParse(str) with
+        | (true,int) -> Some(int)
+        | _ -> None
+
+    let (|FirstRegexGroup|_|) pattern input =
+        let m = Regex.Match(input,pattern) 
+        if (m.Success) then Some m.Groups.[1].Value else None 
+
+
+    let getDaysFromNow text = 
+        match text with
+        | "today" -> Success(0)
+        | "tomorrow" -> Success(1)
+        | FirstRegexGroup "in (\d+) days" numberOfDaysString -> 
+            match numberOfDaysString with
+            | Int numberOfDays -> Success(numberOfDays)
+            | _ -> Result.Failure(InvalidFormat("Expected 'in x days'"))
+        | _ -> Result.Failure(InvalidFormat("Expected 'in x days, today or tomorrow'"))
 
     let parse args =
         let defaultOptions = { 

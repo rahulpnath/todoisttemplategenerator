@@ -63,6 +63,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="ProgramTests.fs" />
+    <Compile Include="DaysFromNowTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsCheck">
