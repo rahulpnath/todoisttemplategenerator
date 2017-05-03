@@ -18,4 +18,15 @@ let ``Get days from now for valid string returns expected`` text expectedNumber 
 
     test <@ expected = actual @>
 
+[<Theory>]
+[<InlineData("todays", "Expected 'in x days, today or tomorrow" )>]
+[<InlineData("stomorrow", "Expected 'in x days, today or tomorrow" )>]
+[<InlineData("2 days", "Expected 'in x days, today or tomorrow" )>]
+[<InlineData("in 20x days", "Expected 'in x days, today or tomorrow" )>]
+[<InlineData("in 01 day", "Expected 'in x days, today or tomorrow" )>]
+[<InlineData("2", "Expected 'in x days, today or tomorrow" )>]
+let ``Get days from now for invalid string returns expected`` text expectedMessage =
+    let expected: Result<int,Error> = Failure(InvalidFormat(expectedMessage))
+    let actual = ArgParser.getDaysFromNow text
 
+    test <@ expected = actual @>
