@@ -2,6 +2,7 @@
 
 open System
 open System.IO
+open FSharp.Data
 
 type Error = 
     | InvalidFormat of string
@@ -21,4 +22,4 @@ type CommandLineOptions = {
 
 type DaysFromNow = int
 
-
+type TodoistTemplate = CsvProvider<"Template.csv">

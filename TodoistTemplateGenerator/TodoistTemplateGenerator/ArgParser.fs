@@ -55,5 +55,9 @@
                 | _ -> Result.Failure(MissingArgument("Date is required"))
             | _ -> Success optionsSoFar
 
-        parseArguments args defaultOptions
+        let parsed = parseArguments args defaultOptions
+        match parsed with
+        | Success cla when cla.startDate.IsNone || cla.templateFile.IsNone
+            -> Result.Failure(MissingArgument("No Arguments"))
+        | _ -> parsed
 
