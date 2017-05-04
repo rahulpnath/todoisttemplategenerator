@@ -30,3 +30,17 @@ let ``Get days from now for invalid string returns expected`` text expectedMessa
     let actual = ArgParser.getDaysFromNow text
 
     test <@ expected = actual @>
+
+
+[<Theory>]
+[<InlineData("today", 0 )>]
+[<InlineData("tomorrow", 1 )>]
+[<InlineData("in 2 days", 2 )>]
+[<InlineData("in 20 days", 20 )>]
+[<InlineData("in 02 days", 2 )>]
+[<InlineData("in 200 days", 200 )>]
+[<InlineData("in 99999 days", 99999 )>]
+let ``Get days from now string returns expected`` expected (daysFromNow: DaysFromNow) =
+    let actual = ArgParser.getDaysFromNowString daysFromNow
+
+    test <@ expected = actual @>

@@ -9,7 +9,6 @@
         let m = Regex.Match(input,pattern) 
         if (m.Success) then Some m.Groups.[1].Value else None 
 
-
     let getDaysFromNow text = 
         match text with
         | "today" -> Success(0)
@@ -18,6 +17,12 @@
             let numberOfDays = Int32.Parse(numberOfDaysString)
             Success(numberOfDays)
         | _ -> Result.Failure(InvalidFormat("Expected 'in x days, today or tomorrow"))
+
+    let getDaysFromNowString daysFromNow = 
+        match daysFromNow with
+        | 0 -> "today"
+        | 1 -> "tomorrow"
+        | _ -> sprintf "in %i days" daysFromNow
 
     let parse args =
         let defaultOptions = { 
