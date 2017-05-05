@@ -28,7 +28,11 @@ module Main =
     let main argv = 
         let cla = ArgParser.parse (argv |> Seq.toList) //TODO: How to avoid this like using IEnumerable?
         match cla with
-        | Failure message -> printfn "%A" message
+        | Failure message -> 
+            printfn "%A" message
+            printfn  "\nUsage: \n\
+            TodoistTemplateGenerator -startDate \"03 Oct 2014\" -templateFile \"<pathToFile>\" \n\n\
+            Outputs a new file with the dateAppended to file name in the same folder as the existing file."
         | Success options -> 
             let template = TodoistTemplate.Load(options.templateFile.Value)
             let adjustByDays = startInDays DateTime.Now options.startDate.Value
