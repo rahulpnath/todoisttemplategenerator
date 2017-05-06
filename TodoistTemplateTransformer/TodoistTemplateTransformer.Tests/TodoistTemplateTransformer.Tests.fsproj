@@ -56,8 +56,6 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="ArgParserTests.fs" />
     <Content Include="packages.config" />
-    <None Include="any\netstandard1.6\FSharp.Core.sigdata" />
-    <None Include="any\netstandard1.6\FSharp.Core.optdata" />
     <Content Include="App.config" />
     <Content Include="TestFile.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -70,7 +68,7 @@
       <HintPath>..\packages\FsCheck.2.8.0\lib\net452\FsCheck.dll</HintPath>
     </Reference>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.1.12\lib\net45\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\FSharp.Core.4.1.17\lib\net45\FSharp.Core.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
